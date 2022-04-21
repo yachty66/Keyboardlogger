@@ -1,0 +1,3 @@
+#! /bin/bash
+PATH=/opt/homebrew/opt/ruby/bin:/opt/homebrew/opt/ruby/bin:/usr/local/opt/ruby/bin:/usr/local/opt/ruby/bin:/usr/local/opt/ruby/bin:/usr/local/opt/ruby/bin:/Users/maxhager/opt/anaconda3/bin:/Users/maxhager/opt/anaconda3/condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.8/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/maxhager/.rvm/bin
+python3 /Users/maxhager/Projects/Keyboardlogger/Repo/Keyboardlogger.py

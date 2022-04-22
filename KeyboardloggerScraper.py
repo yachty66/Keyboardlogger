@@ -26,22 +26,23 @@ listWithDailyKeystrokes = []
 
 todaysDate = datetime.today().strftime('%Y-%m-%d')
 
-#create file
-#dataFile = os.path.join('KeystrokeRecords.csv')
-
-#read file as df and add header
-df = pd.read_csv("KeystrokeRecords.csv", sep='\t', names=["Date", "Sum"])
-print(df)
+#if len(index)==0 set header to Date, sum other wise just read file
+df = pd.read_csv("KeystrokeRecords.csv")
+if(len(df)==0):
+    df.columns = ["Date", "sum"]
 
 #if row with current date does not exist (in csv) add row with current date in column "Date" and set every other cell in row to zero
 def addDailyRow():
+    #index of last row 
     indexCurrentRow = len(df)
+    #insert on position of last row todays row
     df.loc[indexCurrentRow, "Date"] = todaysDate
-    df.loc[indexCurrentRow, 1:] = 0 
+    #added in jeder row
+    df.iloc[: , 1:] = 0
     print(df)
 
 def saveToCsv():
-    df.to_csv("KeystrokeRecords.csv")
+    df.to_csv("KeystrokeRecords.csv", index=False)
 
 def getCharacterFromKeystrokeCollector():
     with open("../LogData/KeystrokeCollector.txt", "r") as f:
@@ -51,23 +52,31 @@ def getCharacterFromKeystrokeCollector():
             #take third elem
 
 def addKeystrokes():
+    #iterate over columns from daily row
+    #count occurence of current cell object in listWithDailyKeystrokes and add this value to the current cell object
+     
+
     #4. if exist in header go to row of current day and increase amount um 1
     for i in listWithDailyKeystrokes:
         if i not in df:
             df[i] = 0
 
 
-
         #if i is not in header add to header and increase in last row at this header column ONE. set all other rows to zero
         #else increase counter in column with same headername by ONE
         
-        
+def keyStrokeCounter():
+    #iterate over columns from daily row
+    #count occurence of current cell object in listWithDailyKeystrokes and add this value to the current cell object
+    print(listWithDailyKeystrokes)
+    for row in df.iterrows():
+        print(row['c1'], row['c2'])
 
 
-#addHeader()
-addDailyRow()
-saveToCsv()
+
+
+addDailyRow()    
 getCharacterFromKeystrokeCollector()
 addKeystrokes()
-print(df)
-#print(listWithDailyKeystrokes)
+keyStrokeCounter()
+saveToCsv()

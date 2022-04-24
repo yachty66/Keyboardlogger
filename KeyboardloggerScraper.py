@@ -38,7 +38,8 @@ def addDailyRow():
     #insert on position of last row todays row
     df.loc[indexCurrentRow, "Date"] = todaysDate
     #added in jeder row
-    df.iloc[: , 1:] = 0
+    #soll a
+    df.iloc[-1 , 1:] = 0
     print(df)
 
 def saveToCsv():
@@ -60,21 +61,38 @@ def addKeystrokes():
     for i in listWithDailyKeystrokes:
         if i not in df:
             df[i] = 0
-
-
         #if i is not in header add to header and increase in last row at this header column ONE. set all other rows to zero
         #else increase counter in column with same headername by ONE
         
 def keyStrokeCounter():
     #iterate over columns from daily row
     #count occurence of current cell object in listWithDailyKeystrokes and add this value to the current cell object
-    print(listWithDailyKeystrokes)
-    for row in df.iterrows():
-        print(row['c1'], row['c2'])
+    '''
+    now I need to make a plan for the next steps
 
 
+    before clearing everything 12:00 every day call the keyboardlogger script to add a new line
 
+    clear KeystrokeCollector.txt function. every day 12:00 night synced with time zone
 
+    can just add this script to crontab. need to fix problem that to every row which is not last row all values are set to 0.
+
+    STEPS
+        https://crontab.guru/#*_*_1_*_* for this script
+        auslagern von dateien mit sensiblen daten von github
+        transfer data from KeystrokeCollector.txt to KeystrokeCollectorBackup.txt
+        delete data from KeystrokeCollector.txt
+    '''
+    counter = 2
+    for cell in df.iloc[-1,2:]:
+        colname = df.columns[counter]
+        print(colname)
+        occurenceColnameInlistWithKeystrokes = listWithDailyKeystrokes.count(colname)
+        df.iloc[-1, df.columns.get_loc(colname)] = occurenceColnameInlistWithKeystrokes
+        counter += 1
+    #set sum
+    df.iloc[-1, 1]=df.iloc[-1, 2:].sum()
+    
 addDailyRow()    
 getCharacterFromKeystrokeCollector()
 addKeystrokes()

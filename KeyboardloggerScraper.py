@@ -65,26 +65,7 @@ def addKeystrokes():
 def keyStrokeCounter():
     #iterate over columns from daily row
     #count occurence of current cell object in listWithDailyKeystrokes and add this value to the current cell object
-    '''
-    now I need to make a plan for the next steps
-
-
-    before clearing everything 12:00 every day call the keyboardlogger script to add a new line
-
-    clear KeystrokeCollector.txt function. every day 12:00 night synced with time zone
-
-    can just add this script to crontab. need to fix problem that to every row which is not last row all values are set to 0.
-
-    STEPS
-
-        check if script works. i.e. 
-
-
-        https://crontab.guru/#*_*_1_*_* for this script
-        auslagern von dateien mit sensiblen daten von github
-        transfer data from KeystrokeCollector.txt to KeystrokeCollectorBackup.txt
-        delete data from KeystrokeCollector.txt
-        
+    '''    
         execution diagram:
             1. add row in KeystrokeRecords with daily date as an entry and rest zeros
             2. get all daily characters 
@@ -93,21 +74,13 @@ def keyStrokeCounter():
             5. transfer data from daily keystrokecollector to backup file 
             6. delete daily keystroke collector 
 
-            Note:
-                it is important that this gets executed exactly in that order. the script gets executed every 24 hours. 
-                everything is fully functional. just need to test if daily date entry works. general does the execution with crontab work?
-
-                1. configure crontab for one minute
-                    check if entries are made  
-                2. set crontab to 24h
-                2. technically done. define next steps for finally completing the project.
-
             Next steps: 
-                1. check if it worked
+                1. check if it worked (every day correctly)
                 2. send me every sunday an mail with the diagram 
-
-
-        send every sunday email with diagram of keystrokes
+                    create a several script which i schedule every week on crontab
+                    Every column from this week as an diagram(sum not included but separate as an big number on the top of the diagram)
+                3. clean up code and add a nice read.me
+                4. share with hacker crew.
     '''
     counter = 2
     for cell in df.iloc[-1,2:]:
